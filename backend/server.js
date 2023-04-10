@@ -1,5 +1,6 @@
 const express = require('express');
 const { chats } = require('./data/data.js');
+require('dotenv').config();
 
 const app = express();
 
@@ -19,4 +20,6 @@ app.get('/api/chat/:id', (req, res) => {
         res.send(singleChat);
     });
 
-app.listen(5000, console.log('APP IS RUNNING ON 5000'));
+const PORT = process.env.PORT;
+
+app.listen(PORT, console.log('APP IS RUNNING ON '+ PORT));
