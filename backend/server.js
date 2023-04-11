@@ -3,26 +3,21 @@ const { chats } = require('./data/data.js');
 require('dotenv').config();
 const connectDB = require('./config/db.js');
 const colors = require('colors');
+const userRoutes = require('./routes/userRoutes.js')
 
 connectDB();
 
 const app = express();
 
+app.use(express.json()); // To accept json data from frontend
+
 app.get('/', (req, res) => {
   res.send('API is Running');
 });
 
-app.get('/api/chat', (req,res)=>{
-    res.send(chats);
-})
+// Used a separate Router for users, to look clean
+app.use('/api/users', userRoutes)
 
-app.get('/api/chat/:id', (req, res) => {
-    //   console.log(req.params.id);
-    const singleChat = chats.find((chat)=>(
-        chat._id===req.params.id
-        ));
-        res.send(singleChat);
-    });
 
 const PORT = process.env.PORT;
 
