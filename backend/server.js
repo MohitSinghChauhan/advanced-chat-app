@@ -3,7 +3,8 @@ const { chats } = require('./data/data.js');
 require('dotenv').config();
 const connectDB = require('./config/db.js');
 const colors = require('colors');
-const userRoutes = require('./routes/userRoutes.js')
+const userRoutes = require('./routes/userRoutes.js');
+const { notFound, errorHandler } = require('./middlewares/errorHandlerMiddleware.js');
 
 connectDB();
 
@@ -17,6 +18,8 @@ app.get('/', (req, res) => {
 
 // Used a separate Router for users, to look clean
 app.use('/api/users', userRoutes)
+app.use(notFound);
+app.use(errorHandler);
 
 
 const PORT = process.env.PORT;
