@@ -16,8 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const userExist = await User.findOne({ email });
 
   if (userExist) {
-    res.status(400);
-    throw new Error('Email already exists');
+    res.status(400).json({ errorMessage: 'Email already exists' });
   }
 
   let DefaultNameInitialsImage = image;
@@ -85,7 +84,7 @@ const authUser = asyncHandler(async (req, res) => {
     email: user.email,
     image: user.image,
     token: generateToken(user._id),
-  })
+  });
 });
 
 module.exports = { registerUser, authUser };

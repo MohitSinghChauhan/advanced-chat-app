@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 // Used a separate Router for users, to look clean
-app.use('/api/users', userRoutes)
+app.use('/api/user', userRoutes)
 app.use(notFound);
 app.use(errorHandler);
 
