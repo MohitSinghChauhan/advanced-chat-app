@@ -23,7 +23,7 @@ const notFound = (req, res, next) => {
 // ======== next() ====================
 
 const errorHandler = (err, req, res, next) => {
-  if (app.get(process.env.NODE_ENV) === 'development') {
+  if (process.env.NODE_ENV === 'development') {
     console.error(err.stack);
     res.status(500).send(err.message);
   } else {
