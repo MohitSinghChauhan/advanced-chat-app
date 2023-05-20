@@ -145,7 +145,9 @@ const Signup = () => {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     if (e.target.value.length < 8) {
-      e.target.setCustomValidity('Password must be at least 8 characters long.');
+      e.target.setCustomValidity(
+        'Password must be at least 8 characters long.'
+      );
     } else {
       e.target.setCustomValidity('');
     }
@@ -202,9 +204,9 @@ const Signup = () => {
                 </Button>
               </InputRightElement>
             </InputGroup>
-              <FormHelperText>
-                Password must be at least 8 characters long.
-              </FormHelperText>
+            <FormHelperText>
+              Password must be at least 8 characters long.
+            </FormHelperText>
           </FormControl>
 
           <FormControl id="confirm-password" isRequired>
